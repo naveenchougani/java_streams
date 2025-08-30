@@ -20,6 +20,7 @@ class CountEvenOdd {
     //Collectors.counting()  -> returns Long value and no need to unbox   
         
     // Collectors.summingInt(Integer::intValue) -> return Integer value and unbox required as computation required
+    // Collectors.summingInt(primitive int) -> expects primitive int
     Map<Boolean,Integer> sumEvenOddParitioningBy = numbers.stream()
                                              .collect( 
                                                  Collectors.partitioningBy(
@@ -29,6 +30,7 @@ class CountEvenOdd {
                                                      );
 
      // Collectors.averagingInt(Integer::intValue) -> return Double value and unbox required as computation required  
+    // Collectors.averagingInt(primitive int) -> expects primitive int
     Map<Boolean,Double> averageEvenOddParitioningBy = numbers.stream()
                                              .collect( 
                                                  Collectors.partitioningBy(
@@ -47,6 +49,7 @@ class CountEvenOdd {
                                                       );
 
      // Collectors.summingInt(Integer::intValue) -> return Integer value and unbox required as computation required
+    // Collectors.summingInt(primitive int) -> expects primitive int
     Map<Boolean,Integer> sumEvenOddGroupingBy = numbers.stream()
                                              .collect( 
                                                  Collectors.groupingBy(
@@ -56,6 +59,7 @@ class CountEvenOdd {
                                                      );
 
      // Collectors.averagingInt(Integer::intValue) -> return Double value and unbox required as computation required  
+    // Collectors.averagingInt(primitive int) -> expects primitive int
     Map<Boolean,Double> averageEvenOddGroupingBy = numbers.stream()
                                              .collect( 
                                                  Collectors.groupingBy(
@@ -64,7 +68,34 @@ class CountEvenOdd {
                                                                         )
                                                      );
 
-    //Collectors.counting() -> returns Long value and unbox not required
+      // As for int we have averagingDouble and summingDouble for collection of Double wrapper objects  
+      List<Double> numbers = Arrays.asList(1.0, 2.5, 3.8,4.0);
+
+    // Collectors.averagingDouble(Double::doubleValue) -> return Double value and unbox required as computation required  
+    // Collectors.averagingDouble(primitive double) -> expects primitive double
+        Map<Boolean,Double> averageDoubleEvenOddGroupingBy = numbers.stream()
+                                             .collect( 
+                                                 Collectors.groupingBy(
+                                                                        n->n%2==0,
+                                                                       Collectors.averagingDouble(Double::doubleValue)
+                                                                        )
+                                                     );        
+        System.out.println(averageDoubleEvenOddGroupingBy);
+
+        
+    // Collectors.summingDouble(Double::doubleValue) -> return Double value and unbox required as computation required  
+    // Collectors.summingDouble(primitive double) -> expects primitive double
+        Map<Boolean,Double> sumDoubleEvenOddGroupingBy = numbers.stream()
+                                             .collect( 
+                                                 Collectors.groupingBy(
+                                                                        n->n%2==0,
+                                                                       Collectors.summingDouble(Double::doubleValue)
+                                                                        )
+                                                     );
+        
+        System.out.println(sumDoubleEvenOddGroupingBy);
+
+    //Collectors.counting() -> returns Long value irrespe
      Map<Boolean,Long> countEvenOddGroupingBy = numbers.stream()
                                               .collect(
                                                   Collectors.groupingBy(

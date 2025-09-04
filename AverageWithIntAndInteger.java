@@ -9,7 +9,8 @@ class Main {
         List<Integer> numbers=Arrays.asList(5,10,25,20,29);
        
         Double averageWithInteger = numbers.stream().filter(n->n>10).collect(Collectors.averagingInt(n->n));
-      
+
+        // mapToInt(n->n)-> convert Stream<Integer> to IntStream
         double averageWithInt = numbers.stream().filter(n->n>10).mapToInt(num->num).average().orElse(0);
         
         System.out.println(averageWithInteger+"\n"+averageWithInt);

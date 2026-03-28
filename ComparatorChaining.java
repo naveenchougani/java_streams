@@ -13,6 +13,11 @@ class Main {
             new Person("Bob", "smith", 30),
             new Person("Jane", "zoe", 29) // Note: lowercase first name for testing
         );
+// now when you sort based on age in higher age...
+// "bob"(30 age) , "BOB"(30 age) are having same age...
+// as Sorted uses stable sort which preserves the original order in case of same matching criteria..
+// "bob" first, "BOB" second.. hence findFirst would pickup "bob"
+// very good point to remember.        
 
         // sorted(Comparator.comparingInt/Doubl/Long().order().thenComparing())
         // here comparingInt.. will works with primitive Types.

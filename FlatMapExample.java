@@ -15,6 +15,13 @@ class Main {
         Set<String> uniqueListOfString = sentences.stream().map(sen->sen.split(" "))//creates array of Strings
                                         .flatMap(arr->Arrays.stream(arr)) // flatmap converst all arrays into single stream
                                         .collect(Collectors.toSet());
+
+        // updated verions and easier to understand
+        List<String> sentense = sentences.stream()
+            .flatMap(gpw->Arrays.stream(gpw.split(" ")))
+            .distinct()
+            .toList();
+                    
         System.out.println(uniqueListOfString);
         
     }

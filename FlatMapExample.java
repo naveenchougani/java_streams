@@ -23,6 +23,25 @@ class Main {
             .toList();
                     
         System.out.println(uniqueListOfString);
-        
+
+
+        /* Real example of flatMap
+        record Employee(String name, String role, int salary) {}
+        record Department(String deptName, List<Employee> employees) {}
+        record DeptEmployeeDTO(String deptName, String employeeName, int salary) {}
+
+        Map<String, List<DeptEmployeeDTO>> byRole = departments.stream()
+                                                               .flatMap(dept -> dept.employees().stream()
+                                                                    .filter(emp -> emp.salary() > 100_000)
+                                                                    .map(emp -> Map.entry(
+                                                                                        emp.role(),
+                                                                                        new DeptEmployeeDTO(dept.deptName(), emp.name(), emp.salary())
+                                                                                        ))
+                                                                    )
+                                                            .collect(Collectors.groupingBy(
+                                                Map.Entry::getKey,
+                                                Collectors.mapping(Map.Entry::getValue, Collectors.toList())
+                                                ));
+        */
     }
 }

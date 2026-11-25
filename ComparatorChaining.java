@@ -42,12 +42,20 @@ class Main {
                                     ).findFirst().map(Person::getlname).orElse("No Employee");
         System.out.println(oldPersonLastNameDesc);
 
+        //.thenComparing(p -> p.getFname().toLowerCase(), Comparator.reverseOrder()) is correct version
+        //.thenComparing(Comparator.comparing(p -> p.getFname().toLowerCase(), Comparator.reverseOrder())) is redundant at 40 
+
 
         //another point to remember
       //  Comparator.comparingInt(Person::getAge).reversed()
       //    .thenComparing(Person::getFname)
       //    .reversed(); // Flips BOTH age AND fname!
     //Because .reversed() applies to the whole combined comparator returned by .thenComparing(...):
+
+
+        // Comparator.comparingInt(Person::getAge).reversed() can be written as
+        //Comparator.comparing(Person::getAge, Comparator.reverseOrder()), because comparing and thenComparing()
+        // laways needs obect which are comparable isntances
         
     }
 }

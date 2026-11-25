@@ -45,6 +45,21 @@ class Main {
         //.thenComparing(p -> p.getFname().toLowerCase(), Comparator.reverseOrder()) is correct version
         //.thenComparing(Comparator.comparing(p -> p.getFname().toLowerCase(), Comparator.reverseOrder())) is redundant at 40 
 
+        
+        // IF you want names A- Z (A -> Z, ignoring case; "Bob" and "bob" tie)( natural insertiion order takens )
+        // Comparator.comparing(Person::getFname, String.CASE_INSENSITIVE_ORDER); 
+        // Comparator.comparing(Person::getFname, String.CASE_INSENSITIVE_ORDER.reversed());
+
+        ////  IMP IMP
+        //  We will not modify the inputs so 90% we will use the below case only..
+        //i.,e either get smaller letters or larger letters
+        // Case Sensitive, a-z, then A-z
+        //Comparator.comparing(Person::getFname, Comparator.reverseOrder());
+        // Case Sensitive A-Z, a-z
+        // //Comparator.comparing(Person::getFname, Comparator.reverseOrder());
+
+        
+        //Comparator.comparing(Person::getFname, Comparator.reverseOrder());
 
         //another point to remember
       //  Comparator.comparingInt(Person::getAge).reversed()

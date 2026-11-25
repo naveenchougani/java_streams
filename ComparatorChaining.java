@@ -41,7 +41,13 @@ class Main {
                                        .thenComparing(Comparator.comparing(Person::getlname,Comparator.reverseOrder()))
                                     ).findFirst().map(Person::getlname).orElse("No Employee");
         System.out.println(oldPersonLastNameDesc);
-        
+
+
+        //another point to remember
+      //  Comparator.comparingInt(Person::getAge).reversed()
+      //    .thenComparing(Person::getFname)
+      //    .reversed(); // Flips BOTH age AND fname!
+    //Because .reversed() applies to the whole combined comparator returned by .thenComparing(...):
         
     }
 }
